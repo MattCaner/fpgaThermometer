@@ -103,6 +103,9 @@ module wire3 #(parameter wire3clkdiv = 1000)(input clk, rst, start, inout wire3d
             end
         end
     end
+    
+    assign wire3dq = wire3dqReg;
+    assign wire3rst = wire3rstReg;
     // END OF SENDER/RECEIVER
 
    
@@ -110,6 +113,7 @@ module wire3 #(parameter wire3clkdiv = 1000)(input clk, rst, start, inout wire3d
     always @(posedge clk, posedge rst)
         if(rst) dataOutReg <= 9'b0;
         else if (state == PublishingData) dataOutReg <= data;
+    assign dataOut = dataOutReg;
     
     // READY INFORMATION:
     assign ready = (state == PublishingData) ? 1'b1 : 1'b0;
