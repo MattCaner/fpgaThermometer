@@ -1,11 +1,10 @@
 `timescale 1ns / 1ps
 
 
-module top #(parameter nb = 9)(input clk, rst, start, wire3rst, wire3clk, wire3dq, output [nb-1:0] dataOut);
+module top #(parameter nb = 9)(input clk, rst, start, inout wire3rst, output wire3clk, wire3dq, output [nb-1:0] dataOut);
 
     localparam hp = 5, brate = 9600;
     reg slowclk;
-    reg [nb-1:0] dataOut;
     
     reg trn, fin;
     
