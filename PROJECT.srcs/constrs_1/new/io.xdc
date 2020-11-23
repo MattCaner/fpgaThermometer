@@ -2,7 +2,7 @@
 set_property PACKAGE_PIN Y11  [get_ports {wire3rst}];  # "JA1"
 set_property PACKAGE_PIN AA11 [get_ports {wire3clk}];  # "JA2"
 set_property PACKAGE_PIN Y10  [get_ports {wire3dq}];  # "JA3"
-set_property PACKAGE_PIN V10 [get_ports {tx}];  # "JB3"
+#set_property PACKAGE_PIN V10 [get_ports {tx}];  # "JB3"
 #set_property PACKAGE_PIN W8 [get_ports {rx}];  # "JB4"
 
 
