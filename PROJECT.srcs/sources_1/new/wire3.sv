@@ -82,6 +82,7 @@ module wire3 #(parameter wire3clkdiv = 1000)(input clk, rst, start, inout wire3d
                 hasEnded <= wire3dq;
                 bytesSend <= bytesSend + 1'b1;
             end
+            else if (bytesSend[3])  bytesSend <= 4'b0;
             else if (hasClkWentDown) bytesSend <= bytesSend + 1'b1;
         end
         else if (state == AskingForData) begin
@@ -130,7 +131,7 @@ module wire3 #(parameter wire3clkdiv = 1000)(input clk, rst, start, inout wire3d
         case(state)
             Idle: nextstate = start ? Starting : Idle;
             Starting: nextstate = bytesSend[3] ? Starting : AskingForConfig;
-            AskingForConfig: nextstate = bytesSend[3] ? AskingForConfig : ReadingConfig;
+            AskingForConfig: nextstate = bytesSend[3] ? ReadingConfig : AskingForConfig;
             ReadingConfig: nextstate = bytesSend[3] ? hasEnded ? AskingForData : AskingForConfig : ReadingConfig;
             AskingForData: nextstate = bytesSend[3] ? ReadingData : AskingForData;
             ReadingData: nextstate = (bytesSend == 4'b1001) ? PublishingData : ReadingData;
