@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module wire3 #(param wire3clkdiv = 1000)(input clk, rst, start, inout wire3dq, output wire3clk, wire3rst, output [8:0] dataOut, ready);
+module wire3 #(parameter wire3clkdiv = 1000)(input clk, rst, start, inout wire3dq, output wire3clk, wire3rst, output [8:0] dataOut, ready);
     
     typedef enum {Idle, Starting, AskingForConfig, ReadingConfig, AskingForData, ReadingData, PublishingData } states;
     states state, nextstate;
