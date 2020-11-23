@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module wire3 #(parameter wire3clkdiv = 1000)(input clk, rst, start, inout wire3dq, output wire3clk, wire3rst, output [8:0] dataOut, ready);
+module wire3 #(parameter wire3clkdiv = 1000)(input clk, rst, start, inout wire3dq, output wire3clk, wire3rst, output ready, output [8:0] dataOut );
     
     typedef enum {Idle, Starting, AskingForConfig, ReadingConfig, AskingForData, ReadingData, PublishingData } states;
     states state, nextstate;
@@ -125,7 +125,8 @@ module wire3 #(parameter wire3clkdiv = 1000)(input clk, rst, start, inout wire3d
         else state <= nextstate;
         
     // FINITE STATE MACHINE LOGIC   
-    always @*
+    always @* begin
+        nextstate = Idle;
         case(state)
             Idle: nextstate = start ? Starting : Idle;
             Starting: nextstate = bytesSend[3] ? Starting : AskingForConfig;
@@ -135,5 +136,6 @@ module wire3 #(parameter wire3clkdiv = 1000)(input clk, rst, start, inout wire3d
             ReadingData: nextstate = (bytesSend == 4'b1001) ? PublishingData : ReadingData;
             PublishingData: nextstate = AskingForConfig;
         endcase
+    end
 
 endmodule

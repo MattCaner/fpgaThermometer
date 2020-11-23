@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="49" Path="C:/Users/Kuba/Desktop/Programowanie/AGH/VII_semestr/jezyki_opisu_sprzetu/fpgaThermometer-main/PROJECT.xpr">
+<Project Version="7" Minor="49" Path="C:/Users/trzci/vivado/fpgaThermometer/PROJECT.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="8a020e785c1b42f18389b79911991b6d"/>
